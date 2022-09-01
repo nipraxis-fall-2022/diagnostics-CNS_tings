@@ -5,8 +5,9 @@ Run as:
     python3 scripts/validate_data.py
 """
 
+from opcode import haslocal
 from pathlib import Path
-import hashlib
+from hashlib import sha1
 
 
 def file_hash(filename):
@@ -24,6 +25,8 @@ def file_hash(filename):
     """
     # Open the file, read contents as bytes.
     # Calculate, return SHA1 has on the bytes from the file.
+    contents = Path(filename).read_bytes()
+    return sha1(contents).hexdigest()
     # This is a placeholder, replace it to write your solution.
     raise NotImplementedError(
         'This is just a template -- you are expected to code this.')
