@@ -55,7 +55,21 @@ def validate_data(data_directory):
     # Calculate actual hash for given filename.
     # If hash for filename is not the same as the one in the file, raise
     # ValueError
-    # This is a placeholder, replace it to write your solution.
+
+    # Read lines from ``hash_list.txt`` file.
+    hash_list_path = Path(data_directory)
+    hash_text = (hash_list_path / 'hash_list.txt').read_text()
+    group_data = hash_list_path.parent
+    # Split into SHA1 hash and filename
+    for line in hash_text.splitlines():
+        hash, filename = line.strip().split()
+        # Calculate actual hash for given filename.
+        actual_hash = file_hash(group_data / filename)
+    # If hash for filename is not the same as the one in the file, raise
+    # ValueError
+    if hash != actual_hash:
+            raise ValueError(f"Hash for {filename} does not match expected hash")
+    return       
     raise NotImplementedError(
         'This is just a template -- fill out the template with code.')
 
