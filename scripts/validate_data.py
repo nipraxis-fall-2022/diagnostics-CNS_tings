@@ -69,7 +69,7 @@ def validate_data(data_directory):
     # ValueError
     if hash != actual_hash:
             raise ValueError(f"Hash for {filename} does not match expected hash")
-    return       
+    return print("SUCCESS: Filename hashes match expected ")      
     raise NotImplementedError(
         'This is just a template -- fill out the template with code.')
 
