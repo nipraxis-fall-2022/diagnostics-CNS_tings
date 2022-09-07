@@ -2,7 +2,7 @@
 """
 
 # Any imports you need
-# +++your code here+++
+import numpy as np
 
 
 def dvars(img):
@@ -29,4 +29,11 @@ def dvars(img):
     # You may be be able to solve this in four lines, without a loop.
     # But solve it any way you can.
     # This is a placeholder, replace it to write your solution.
+
+    data = img.get_fdata()
+    voxel_by_time = np.reshape(data, (-1, data.shape[-1]))
+    vol_diff = voxel_by_time[...,:-1] - voxel_by_time[...,1:]
+    dvals = np.sqrt(np.mean(vol_diff ** 2, axis=0))
+    return dvals
+ 
     raise NotImplementedError('Code up this function')
